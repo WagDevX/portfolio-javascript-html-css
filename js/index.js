@@ -1,24 +1,22 @@
-// Get the buttons and postCards elements
+// Obtenha os elementos dos botões e das postCards
 const buttons = document.querySelectorAll(".nav-item button");
 const postCards = document.querySelector(".posts-cards");
 const sectionTitle = document.querySelector(".section-title");
 
-// Add event listeners to the buttons
+// Adicione event listeners aos botões
 buttons.forEach((button) => {
   button.addEventListener("click", (event) => {
-    // Get the button text
+    // Obtenha o texto do botão
     const buttonText = event.target.textContent;
 
-    // Scroll to the "Sobre mim" section
-
-    // Clear the postCards content
+    // Limpe o conteúdo das postCards
     postCards.innerHTML = "";
 
-    // Create a new postCard element
+    // Crie um novo elemento postCard
     const newPostCard = document.createElement("div");
     newPostCard.classList.add("post-card");
 
-    // Set the content of the new postCard based on the button clicked
+    // Defina o conteúdo do novo postCard com base no botão clicado
     switch (buttonText) {
       case "Sobre Mim":
         sectionTitle.innerHTML = "Sobre Mim";
@@ -96,7 +94,7 @@ buttons.forEach((button) => {
         sectionTitle.innerHTML = "Contato";
         newPostCard.innerHTML = `
           <h3>Entre em contato comigo!</h3>
-          <p>Para entrar em contato, envie um e-mail para <a href="mailto:waggt@hotmail.com">email</a> 
+          <p>Para entrar em contato, envie um e-mail para <a href="mailto:waggt@hotmail.com">E-mail</a> 
           ou me siga no <a href="https://www.linkedin.com/in/wagner-silva-0b1b3b1b1/" target="_blank">LinkedIn</a>.</p>`;
         break;
 
@@ -104,131 +102,40 @@ buttons.forEach((button) => {
         break;
     }
 
+    // Adicione o novo postCard ao postCards
+
     if (buttonText == "Sobre Mim" || buttonText == "Contato")
       postCards.appendChild(newPostCard);
+
+    // Role até a seção "Sobre mim" após adicionar o(os) postCards
+
     const sobreMimSection = document.querySelector(".section-title");
     sobreMimSection.scrollIntoView({ behavior: "smooth" });
   });
 });
 
+/**
+ * PortfolioMocks é um array de objetos que representam diferentes projetos do portfólio.
+ * Cada objeto contém informações sobre o projeto, como título, descrição, funcionalidades, link de demonstração e link do repositório.
+ * O array é usado para armazenar vários projetos e pode ser acessado para exibir informações do projeto em um site de portfólio.
+ *
+ * @typedef {Object} Project
+ * @property {number} id - O identificador único do projeto.
+ * @property {string} title - O título do projeto.
+ * @property {string} description - Uma descrição do projeto.
+ * @property {string[]} functionalities - Um array de funcionalidades fornecidas pelo projeto.
+ * @property {string} [demo] - O link para a demonstração do projeto (opcional).
+ * @property {string} [repo] - O link para o repositório do projeto (opcional).
+ */
+
+/**
+ * PortfolioMocks é um array de objetos Project que representam diferentes projetos do portfólio.
+ *
+ * @type {Project[]}
+ */
 const PortfolioMocks = [
+  // Os dados dos projetos vão aqui...
   {
-    id: 0,
-    title: "WorkTasks Web",
-    description:
-      "Este sistema simplifica a criação de etiquetas e cartazes para impressão, gerencia eficientemente itens próximos à data de validade e supervisiona o gerenciamento de tarefas de meus subordinados. Esta iniciativa contribuiu significativamente para aprimorar o desempenho da equipe e melhorar a entrega de resultados em geral.",
-    functionalities: [
-      "Sistema de login separado para cada loja e departamento",
-      "Gerenciamento de tarefas estilo Kanban",
-      "Quadro de avisos",
-      "Chat em tempo real do departamento com RealtimeDatabase",
-      "Geração de etiquetas para impressão, como: Itens próximos à data de validade, itens de transferência, itens com parcelamento sem juros/juros",
-      "Geração e impressão de cartazes de promoção personalizados, compre um e leve outro, compre um e leve o segundo pela metade do preço, desconto na segunda unidade, etc. Tudo adaptado aos papéis pré-impressos da empresa",
-      "Compartilhamento de cartazes de acordo com a validade da oferta entre as lojas (Anteriormente cada loja tinha que fazer o seu próprio via Excel manual e alguns compartilhavam entre si)",
-      "Sistema de gerenciamento para criar, editar e compartilhar ofertas a serem impressas",
-      "Gerenciamento de itens próximos à data de validade, pesquisa de código interno do produto (Obtive uma planilha contendo código e descrição, criei um script que rodava a planilha e adicionava tudo ao MongoDB para uso posterior, pois não tinha acesso ao sistema da empresa)",
-      "Sistema de administração para gerenciar usuários do sistema, bem como consultar tarefas concluídas, tarefas em andamento, tarefas dentro do prazo, tarefas pendentes, etc. por usuário.",
-    ],
-    demo: "https://worktasks-web.vercel.app",
-    repo: null,
-  },
-  {
-    id: 1,
-    title: "Work Task App",
-    description:
-      "Um aplicativo projetado para organizar e distribuir tarefas, bem como auxiliar no processo de precificação e validade na empresa onde trabalho, com um sistema de login, registro de usuário e integração de setor usando Firebase.",
-    functionalities: [
-      "Sistema de login separado para cada loja e departamento",
-      "Gerenciamento de tarefas estilo Kanban",
-      "Scanner de código EAN para precificação de itens",
-      "Gerenciamento de itens próximos à data de validade, pesquisa de código interno do produto (Obtive uma planilha contendo código e descrição, criei um script que rodava a planilha e adicionava tudo ao MongoDB para uso posterior, pois não tinha acesso ao sistema da empresa)",
-    ],
-    repo: "https://github.com/WagDevX/kivy_venv",
-    demo: undefined,
-  },
-
-  {
-    id: 2,
-    title: "Cloud Files",
-    description:
-      "Inspirado no Google Drive, construí um sistema de gerenciamento de arquivos e pastas full stack com login de autenticação baseado em jwt, registro, permissões.",
-    functionalities: [
-      "Criar, excluir, atualizar, baixar arquivos e pastas",
-      "Login, Registrar, Esqueci a senha",
-      "Permissões",
-    ],
-    repo: "https://github.com/WagDevX/NodeExpressApi",
-    demo: "",
-  },
-  {
-    id: 3,
-    title: "To-Do App",
-    description:
-      "Inspirado no Google Keep, construí um aplicativo To-Do App fullstack com Next.js 14 e ServerActions integrado com Banco de Dados Mongo.",
-    functionalities: [
-      "Favoritar",
-      "Mobile First",
-      "Seletor de Cores",
-      "Carregamento de Esqueleto",
-      "Acessibilidade",
-      "Pesquisa",
-      "Filtrar por Favorito",
-    ],
-    repo: "https://github.com/WagDevX/to-do-fullstack-next14",
-    demo: "https://to-do-front-end-next.vercel.app/",
-  },
-
-  {
-    id: 4,
-    title: "E-commerce",
-    description:
-      "Um e-commerce totalmente funcional com sistema de administração para adicionar itens, categorias, alterar banner, gerenciar vendas etc.",
-    functionalities: [
-      "Checkout Stripe",
-      "Sistema Admin",
-      "Design Elegante",
-      "Avaliações de Produtos",
-      "Carrinho",
-      "Login Social",
-    ],
-    repo: "https://github.com/WagDevX/pet-family-ecommerce-front",
-    demo: "https://pet-family-ecommerce-front.vercel.app/",
-  },
-  {
-    id: 5,
-    title: "Agenda de Contatos",
-    description:
-      "Um aplicativo que se conecta a API Back4App para armazenar dados de contatos. Projeto desafio para o BootCamp Santander 2023 - Desenvolvimento Mobile com Flutter.",
-    functionalities: [
-      "Criar, Ler e Atualizar Contatos",
-      "Modo Escuro Claro",
-      "Mudança de Idioma",
-      "Acesso à Câmera",
-      "Acesso à Galeria",
-      "Recortar Imagem",
-      "Animações Personalizadas",
-    ],
-    repo: "https://github.com/WagDevX/contacts",
-    demo: "",
-  },
-  {
-    id: 6,
-    title: "Landing Page",
-    description: "Uma simples landing page para uma empresa de automação.",
-    functionalities: [
-      "Modo Escuro e Claro",
-      "Responsividade",
-      "Simples",
-      "Gerador de PDF de Cotação",
-    ],
-    repo: "https://github.com/WagDevX/gra-lading-page",
-    demo: "https://gra-sepia.vercel.app/",
-  },
-  {
-    id: 7,
-    title: "Portfolio v1",
-    description:
-      "Um site de portfólio construído com React e Node, com o objetivo de mostrar meus projetos e atrair oportunidades e clientes.",
     functionalities: ["Internacionalização", "Responsividade", "Animações"],
     repo: undefined,
     demo: "https://wagdev.com.br",
@@ -248,6 +155,18 @@ const PortfolioMocks = [
     demo: "https://wagner-portfolio.web.app/",
   },
 ];
+
+/**
+ * coursesMock é um array de objetos que representam diferentes cursos e certificações.
+ * Cada objeto contém informações sobre o curso, como título, escola, período e descrição.
+ * O array é usado para armazenar várias formações e pode ser acessado para exibir informações sobre a formação em um site de portfólio.
+ * @typedef {Object} Course
+ * @property {number} id - O identificador único do curso.
+ * @property {string} title - O título do curso.
+ * @property {string} school - A instituição que ofereceu o curso.
+ * @property {string} period - O período em que o curso foi realizado.
+ * @property {string} description - Uma descrição do curso.
+ */
 
 const coursesMock = [
   {
@@ -270,7 +189,7 @@ const coursesMock = [
     school: "Udemy",
     period: "Julho - Dezembro 2023",
     description:
-      "Neste curso, aprendi a criar aplicativos Flutter com Clean Architecture, TDD, e BLoC.",
+      "Neste curso, aprendi a criar aplicativos Flutter com Clean Architecture, TDD e BLoC.",
   },
   {
     id: 3,
